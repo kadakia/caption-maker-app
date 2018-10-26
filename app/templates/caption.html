@@ -1,0 +1,37 @@
+<html>
+    <head>
+        <title>{{ title }}</title>
+    </head>
+    <body>
+        <h1>Generate Caption</h1>
+
+        {% if filename %}
+            <img src="https://s3.amazonaws.com/caption-maker-bucket/{{ filename }}" alt='input image' width="250" height="250"/>
+        {% endif %}
+
+        {% if form %}
+        <form action="" method="POST" enctype="multipart/form-data">
+            {{ form.hidden_tag() }}
+            <p>{{ form.submit() }}</p>
+        </form>
+        {% endif %}
+
+        <br>
+        <hr>
+        <br>
+
+        {% if caption %}
+            {{ caption }}
+        {% endif %}
+
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+    </body>
+</html>
