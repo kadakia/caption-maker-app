@@ -3,7 +3,12 @@
         <title>{{ title }}</title>
     </head>
     <body>
+        {% if caption %}
+        <h1>Generated Caption</h1>
+        {% else %}
         <h1>Generate Caption</h1>
+        {% endif %}
+        
 
         {% if filename %}
             <img src="https://s3.amazonaws.com/caption-maker-bucket/{{ filename }}" alt='input image' width="250" height="250"/>
@@ -22,7 +27,13 @@
 
         {% if caption %}
             {{ caption }}
+
+            <br>
+            <hr>
+            <br>
         {% endif %}
+
+        <a href="{{ url_for('index') }}">HOME</a>
 
         {% with messages = get_flashed_messages() %}
         {% if messages %}

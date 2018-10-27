@@ -55,4 +55,4 @@ def generate_caption(model, photo, tokenizer, max_length):
             break
     in_text = in_text.split()
     in_text = ' '.join(in_text[1:-1])
-    return in_text
+    return in_text.upper()

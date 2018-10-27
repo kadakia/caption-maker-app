@@ -58,6 +58,7 @@ def caption(filename):
     if form.validate_on_submit():
         s3_client = boto3.client('s3')
         image = s3_client.get_object(Bucket='caption-maker-bucket',Key=filename)['Body']
+        # image = 'https://s3.amazonaws.com/caption-maker-bucket/' + filename
 
         # prepare the photograph
         photo = extract_features_2(image)
@@ -65,8 +66,9 @@ def caption(filename):
         # generate the caption
         caption = generate_caption(model, photo, tokenizer, max_length)
 
-        return render_template('caption.html', title = 'Generate Caption', filename = filename, caption = caption)
+        return render_template('caption.html', title = 'Generated Caption', filename = filename, caption = caption)
     return render_template('caption.html', title = 'Generate Caption', filename = filename, form = form)
 
 # page describing use cases
 # option for caption to be read aloud
+# top vocab words and their counts
