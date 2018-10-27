@@ -52,7 +52,7 @@ def caption(filename):
     # hard-code max sequence length
     max_length = app.config['MAX_LENGTH']
     # load the model parameters
-    model = load_model('app/model-ep03-loss3.661-val_loss3.820.h5')
+    model = load_model('app/resnet_model-ep03-loss3.586-val_loss3.777.h5')
 
     form = CaptionForm()
     if form.validate_on_submit():
